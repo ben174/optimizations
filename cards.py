@@ -89,6 +89,19 @@ def sort_replace():
         ret[index] = card_faces[value]
     return ret
 
+def bubble_sort():
+    ret = deck[:]
+    card_values = {}
+    for value, face in enumerate(card_faces):
+        card_values[face] = value
+    for index, face in enumerate(ret):
+        ret[index] = card_values[face]
+    # manual bubble sort
+
+    for index, value in enumerate(ret):
+        ret[index] = card_faces[value]
+    return ret
+
 
 
 # constructs a very large deck of random, unsorted cards
@@ -120,3 +133,7 @@ print('Sort Counter: {}'.format(timeit.default_timer() - start_time))
 start_time = timeit.default_timer()
 assert sort_replace() == baseline
 print('Sort Replace: {}'.format(timeit.default_timer() - start_time))
+
+start_time = timeit.default_timer()
+assert bubble_sort() == baseline
+print('Bubble Sort: {}'.format(timeit.default_timer() - start_time))
