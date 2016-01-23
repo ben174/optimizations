@@ -97,7 +97,14 @@ def bubble_sort():
     for index, face in enumerate(ret):
         ret[index] = card_values[face]
     # manual bubble sort
-
+    did_swap = True
+    while did_swap:
+        did_swap = False
+        for index in xrange(len(ret)-1):
+            if ret[index] > ret[index+1]:
+                # swap
+                ret[index], ret[index+1] = ret[index+1], ret[index]
+                did_swap = True
     for index, value in enumerate(ret):
         ret[index] = card_faces[value]
     return ret
@@ -105,7 +112,7 @@ def bubble_sort():
 
 
 # constructs a very large deck of random, unsorted cards
-deck = [random.choice(card_faces) for i in xrange(1000000)]
+deck = [random.choice(card_faces) for i in xrange(10000)]
 
 # take a baseline to assert against
 baseline = sorted(deck, key=lambda i: card_faces.index(i))
